@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Checkout</h1>
+
+<!-- Transaction Section -->
+<h2>Transaction Details</h2>
+
+{% for item in order.items.all %}  <!-- Loop through ordered items -->
+    <div class="transaction-item">
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" width="100" height="100" style="border-radius: 10px;">
+        <p>Item: {{ item.name }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price: ₹{{ item.price }}</p>
+    </div>
+{% endfor %}
+
+<p><strong>Total Amount: ₹{{ order.total }}</strong></p>
+
+<!-- Proceed to Payment Button -->
+<form action="{% url 'payment' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Pay Now</button>
+</form>
+
+    <div class="container mt-4">
+        <h2>Checkout</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="payment_method" class="form-label">Select Payment Method</label>
+                <select class="form-select" id="payment_method" name="payment_method" required>
+                    <option value="">Choose...</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Debit/Credit Card">Debit/Credit Card</option>
+                    <option value="Net Banking">Net Banking</option>
+                </select>
+            </div>
+            <input type="hidden" name="food_item_id" value="{{ food_item.id }}">
+            <input type="hidden" name="quantity" value="{{ quantity }}">
+            <button type="submit" class="btn btn-primary">Proceed to Pay</button>
+        </form>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,44 @@
+.bottom-navbar {
+    height: 4.3rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.bottom-nav-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 12px;
+}
+
+.nav-item .home-icon {
+    color: #A21A24;
+}
+
+.nav-item i {
+    color: #2c2c2c;
+    font-size: 1.1rem;
+}
+
+.nav-item span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2c2c2c;
+}

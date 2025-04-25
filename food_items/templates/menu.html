@@ -1,0 +1,311 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- font-awesome-cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- style -->
+    <link rel="stylesheet" href="{% static 'styles/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/common.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+</head>
+
+<body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h5 class="mb-0">Menu</h5>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-menu">
+                <a href="/" class="sidebar-menu-item">
+                    <i class="bi bi-house"></i>
+                    <span>Home</span>
+                </a>
+                <a href="{% url 'view_transactions' %}" class="sidebar-menu-item">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span>Reorder</span>
+                </a>
+                <a href="{% url 'view_cart' %}" class="sidebar-menu-item">
+                    <i class="bi bi-cart"></i>
+                    <span>Cart ({{ cart_count }})</span>
+                </a>
+                <a href="{% url 'view_transactions' %}" class="sidebar-menu-item">
+                    <i class="bi bi-receipt"></i>
+                    <span>Transactions</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- main-content -->
+    <div class="main-content" id="mainContent">
+        <div class="header">
+            <div class="left-section">
+                <div class="profile-container">
+                    <i class="bi bi-person-circle profile-icon" id="profileIcon"></i>
+                    <div class="profile-info" id="profileInfo">
+                        <div class="user-email">{{ user_email }}</div>
+                        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+                    </div>
+                </div>
+                <div class="table-info">
+                    <i class="fa-solid fa-location-dot map-icon"></i>
+                    <span>Table {{ table_number }}</span>
+                </div>
+            </div>
+            <div class="right-section">
+                <!-- <a href="{% url 'view_cart' %}" class="cart-button">
+                <i class="bi bi-cart"></i>
+                Cart ({{ cart_count }})
+            </a> -->
+
+                <div class="notification-container">
+                    <i class="fa-regular fa-bell notificatin-icon"></i>
+                    <div class="notification-red-dote"></div>
+                </div>
+
+                <div class="menu-container">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fa-solid fa-ellipsis-vertical menu-bar"></i>
+                    </button>
+                    <div class="menu-dropdown" id="menuDropdown">
+                        <a href="{% url 'view_cart' %}" class="cart-button"><i class="bi bi-cart"></i>Cart ({{
+                            cart_count }})</a>
+                        <a href="#"><i class="bi bi-arrow-repeat me-2"></i>Reorder</a>
+                        <a href="#"><i class="bi bi-receipt me-2"></i>Transactions</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 id="home-title">Eat what makes you happy</h2>
+    <div class="container main-container">
+        <div class="container">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <!-- Rest of your content -->
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search Categories">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+
+        <!-- Category Circles -->
+        <div class="category-main-container">
+            <!-- Category Circles -->
+            <div class="category-circles">
+                {% for category, items in menu_by_category.items %}
+                <div class="category-item" data-category="{{ category.name|slugify }}">
+                    <div class="category-circle">
+                        {% with 'images/'|add:category.name|lower|add:'.jpg' as image_path %}
+                        <img src="{{ category.image.url }}" alt="{{ category.name }}" width="100"
+                            onerror="this.onerror=null; this.src='{{ STATIC_URL }}images/fastfood.jpg';">
+
+                        {% endwith %}
+                    </div>
+                    <span class="category-name">{{ category.name }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="menu-items">
+            <!-- Back Button -->
+            <button class="back-button">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+
+            {% for category, items in menu_by_category.items %}
+            <div class="category-section" id="{{ category.name|slugify }}-section">
+                <h2 class="category-title mb-4">{{ category.name }}</h2>
+                <!-- categories items -->
+                {% for item in items %}
+                <div class=" home-product" data-item-id="{{ item.id }}" data-item-name="{{ item.name }}"
+                    data-item-price="{{ item.price }}"
+                    onclick="showAddons('{{ item.id }}','{{ item.name|escapejs }}','{{ item.price }}','{% if item.image %}{{ item.image.url|escapejs }}{% else %}{{ STATIC_URL }}default-image.jpg{% endif %}','{{ item.description|escapejs }}')">
+
+                    <!-- ✅ Show Image Dynamically -->
+                    <div class="home-product-image">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" width="100">
+                        {% else %}
+                        <img src="/static/default-image.jpg" alt="No image available" width="100">
+                        {% endif %}
+                    </div>
+                    <!-- main-product-name-n-price -->
+                    <div class="main-product-name-n-price">
+                        <h4 class="main-product-name">{{ item.name }}</h4>
+                        <p class="main-product-price">₹{{ item.price }}</p>
+                    </div>
+                    <!-- main-product-desc -->
+                    <p class="main-product-desc">{{ item.description }}</p>
+
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- home-main-product-container -->
+        <div class="home-main-product-container">
+            {% for category, items in menu_by_category.items %}
+            {% for item in items %}
+            <div class="home-product" onclick="showAddons('{{ item.id }}','{{ item.name|escapejs }}','{{ item.price }}','{% if item.image %}{{ item.image.url|escapejs }}{% else %}{{ STATIC_URL }}default-image.jpg{% endif %}','{{ item.description|escapejs }}')">
+                <!-- home-product-image -->
+                <div class="home-product-image">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                    {% endif %}
+                </div>
+                <!-- main-product-name-n-price -->
+                <div class="main-product-name-n-price">
+                    <h4 class="main-product-name">{{ item.name }}</h4>
+                    <p class="main-product-price">₹{{ item.price }}</p>
+                </div>
+                <!-- main-product-desc -->
+                <p class="main-product-desc">{{ item.description }}</p>
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+
+        <!-- Modal for Add-ons Customization -->
+        <div class="modal fade" id="addonsModal" tabindex="-1" aria-labelledby="addonsModalLabel" aria-hidden="true"
+            data-bs-backdrop="false">
+            <!-- home-selected-product -->
+            <div class="home-selected-product modal-dialog">
+                <!-- close-n-black-bg -->
+                <div class="close-n-black-bg btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <!-- close-icon -->
+                    <i class="fa-solid fa-circle-xmark close-icon"></i>
+                </div>
+
+                <!-- selected-product-main-container -->
+                <div class="selected-product-main-container">
+                    <!-- image -->
+                    <img src="" alt="Food item image" class="selected-item-image">
+                    <!-- product-heading -->
+                    <h6 class="selected-item-name"></h6>
+                    <!-- selected-product-description -->
+                    <p class="selected-product-description selected-item-description"></p>
+                    <p class="selected-item-price"></p>
+                </div>
+
+                <!-- selected-product-extra-options -->
+                <div class="selected-product-extra-options">
+
+                    <!-- extra-options-heading -->
+                    <div class="extra-options-heading">
+                        <h4>Add On</h4>
+                        <p>You can choose up to 4 options</p>
+                    </div>
+
+                    <!-- extra-options-container -->
+                    <div class="extra-options-container addons-container">
+                        <!-- Add-ons will be dynamically inserted here -->
+                    </div>
+
+                    <!-- main-selected-product-add-to-cart-container -->
+                    <div class="main-selected-product-add-to-cart-container">
+                        <!-- main-selected-product-increment-n-decrement -->
+                        <div class="main-selected-product-increment-n-decrement">
+                            <button class='selected-product-decrement-btn' onclick="updateQuantity(-1)">-</button>
+                            <span class="quantity">1</span>
+                            <button class='selected-product-increment-btn' onclick="updateQuantity(1)">+</button>
+                        </div>
+                        <!-- selected-product-add-btn -->
+                        <button class="selected-product-add-btn" id="confirmAddToCart">
+                            Add ₹<p class="total-price"></p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update your menu-item div to include data attributes -->
+        <div class="menu-items">
+            {% for category, items in menu_by_category.items %}
+            <div class="category-section" id="{{ category.name|slugify }}-section">
+                <h2 class="category-title mb-4">{{ category.name }}</h2>
+                {% for item in items %}
+                <div class="menu-item" data-item-id="{{ item.id }}" data-item-name="{{ item.name }}"
+                    data-item-price="{{ item.price }}">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name">{{ item.name }}</h3>
+                            <span class="menu-item-price">₹{{ item.price }}</span>
+                        </div>
+                        <p class="menu-item-description">{{ item.description }}</p>
+                        <button type="button" class="add-to-cart-btn"
+                            onclick="showAddons('{{ item.id }}', '{{ item.name }}', '{{ item.price }}')">
+                            Add to Cart
+                        </button>
+                    </div>
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-item-image">
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Bottom Nav Bar -->
+        <nav class="bottom-navbar">
+            <div class="bottom-nav-items">
+                <a href="/" class="nav-item">
+                    <i class="fa-solid fa-house home-icon"></i>
+                    <span>Home</span>
+                </a>
+                <a href="{% url 'view_transactions' %}" class="nav-item">
+                    <i class="fa-solid fa-repeat"></i>
+                    <span>Reorder</span>
+                </a>
+                <a href="{% url 'view_cart' %}" class="nav-item">
+                    <i class="fa-solid fa-cart-shopping" style="position: relative;">
+                        {% if cart_count > 0 %}
+                        <span class="bottom-nav-cart-count">{{ cart_count }}</span>
+                        {% endif %}
+                    </i>
+                    <span>Cart</span>
+                </a>
+                <a href="{% url 'view_transactions' %}" class="nav-item">
+                    <i class="fa-solid fa-money-bill"></i>
+                    <span>Transaction</span>
+                </a>
+            </div>
+        </nav>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- menu javascript -->
+        <script src="../static/scripts/menu.js"></script>
+</body>
+
+</html>
+
+</html>

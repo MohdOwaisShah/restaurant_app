@@ -1,0 +1,224 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.cart-item {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+}
+
+.cart-item h5 {
+    margin: 0;
+}
+
+.cart-item .btn {
+    margin-left: 10px;
+}
+
+.total-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* ----------- */
+.cart-page-product {
+    height: 7rem;
+    width: 20rem;
+    background-color: #EDEDED;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    position: relative;
+}
+
+.cart-page-product img {
+    height: 5rem;
+}
+
+/* cart-page-product-texts */
+.cart-page-product-texts {
+    color: #000000;
+}
+
+.cart-page-product-texts .cart-page-product-name {
+    font-size: 1rem;
+}
+
+.cart-page-product-desc {
+    font-size: 0.7rem;
+    font-weight: 450;
+}
+
+.cart-page-product-price {
+    font-size: 1rem;
+    font-weight: 500;
+    padding-top: 0.3rem;
+}
+
+/* cart-page-product-increment-decrement-btn */
+.cart-page-product-increment-decrement-btn {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+}
+
+.cart-page-product-increment-decrement-btn button {
+    font-size: 1.2rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+}
+
+.cart-page-product-increment {
+    background-color: #A21A24;
+    color: #FFFFFF;
+}
+
+.cart-page-product-decrement:hover {
+    background-color: #A21A24;
+    color: #FFFFFF;
+}
+
+.cart-page-product-increment-decrement-btn span {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+.cart-page-product-close-icon {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    font-size: 1rem;
+}
+
+/* cart-total */
+.cart-total {
+    width: 24rem;
+    background-color: #ededed;
+    color: #a21a24;
+    position: fixed;
+    bottom: 6rem;
+}
+
+.cart-total h3 {
+    text-align: center;
+    font-weight: 550;
+}
+
+/* cart-page-bill-container-main-body */
+.cart-page-bill-container-main-body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* position: relative; */
+}
+
+/* cart-page-bill-container */
+.cart-page-bill-container {
+    width: 20.5rem;
+    height: 21rem;
+    position: fixed;
+    bottom: 0.5rem;
+    transform: translateY(-4rem);
+    background-color: #EDEDED;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    filter: drop-shadow(0px 4px 20px #CCCCCC);
+    border: 1px solid #CCCCCC;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cart-page-bill-hide-container {
+    transform: translateY(16rem);
+}
+
+.cart-page-bill-arrow {
+    margin-bottom: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #050505;
+    color: #EEEEEE;
+    border-radius: 50%;
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+/* cart-page-bill-details */
+.cart-page-bill-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.table-number,
+.subtotal,
+.discount,
+.tax,
+.total {
+    display: flex;
+    width: 16rem;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #050505;
+}
+
+.table-number {
+    padding-bottom: 1rem;
+}
+
+.total {
+    border-top: 1px solid #B3B3B3;
+    padding-top: 1rem;
+}
+
+.cart-page-bill-details p {
+    text-align: right;
+}
+
+.table-number h4 {
+    font-size: 1rem;
+    border-bottom: 1px solid #B3B3B3;
+}
+
+.cart-page-place-order-btn {
+    padding: 0.5rem 5rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-weight: 600;
+    background-color: #A21A24;
+    color: #EEEEEE;
+    border: none;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}
+
+.list-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 7rem;
+}

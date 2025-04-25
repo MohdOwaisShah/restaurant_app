@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Administrator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{% static 'images/home.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .login-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .btn-custom {
+            background-color: black;
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #333;
+        }
+        .welcome-text {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h2 class="text-center mb-4">Restaurant Administration</h2>
+            
+            {% if messages %}
+            <div class="messages mb-4">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <div class="text-center welcome-text">
+                <p>Welcome, {{ user.username }}!</p>
+                <p>Access the administration panel below:</p>
+            </div>
+            <div class="text-center mb-3">
+                <a href="/admin/" class="btn btn-custom w-75">
+                    Access Admin Panel
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="{% url 'logout' %}" class="btn btn-outline-dark w-50">
+                    Logout
+                </a>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <a href="/admin/login/?next=/restaurant-admin/" class="btn btn-custom w-75">
+                    Login as Administrator
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

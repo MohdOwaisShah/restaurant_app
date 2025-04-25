@@ -1,0 +1,72 @@
+body {
+    background-color: #f8f9fa;
+}
+.transaction-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+.transaction-card:hover {
+    transform: translateY(-5px);
+}
+.badge-amount {
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+}
+.reorder-btn {
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+}
+.reorder-btn:hover {
+    background-color: #0056b3;
+}
+
+.bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.bottom-nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 12px;
+}
+
+.nav-item.active {
+    color: #007bff;
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.bottom-nav-cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4444;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
