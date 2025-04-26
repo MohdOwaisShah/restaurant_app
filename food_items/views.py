@@ -547,9 +547,9 @@ def verify_email(request, token):
         return redirect('login')
 
 @login_required
-def order_history(request):
+def re_order(request):
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
-    return render(request, 'order_history.html', {'orders': orders})
+    return render(request, 're_order.html', {'orders': orders})
 
 def send_verification_email(email, token):
     verification_link = f"http://localhost:8000/verify/{token}"
@@ -1019,7 +1019,7 @@ def payment_success(request):
             return JsonResponse({
                 'status': 'success',
                 'message': 'Payment successful!',
-                'redirect_url': reverse('order_history')
+                'redirect_url': reverse('re_order')
             })
 
         except Exception as e:
@@ -1048,6 +1048,3 @@ def get_addons(request, item_id):
 
 def checkout(request):
     return render(request, 'checkout.html')
-
-
-

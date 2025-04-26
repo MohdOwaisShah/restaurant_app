@@ -1,0 +1,149 @@
+/* re-order-product-main-container */
+.re-order-product-main-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 6rem;
+}
+
+.re-order-product {
+    height: 100%;
+    width: 20rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    background-color: #EDEDED;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s ease;
+}
+
+.re-order-product-bar {
+    min-height: 4rem;
+    width: 100%;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EDEDED;
+    gap: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.re-order-product-bar .number-of-products {
+    font-size: 1.1rem;
+    margin: 0rem;
+    font-weight: 700;
+}
+
+.re-order-product-bar .order-date {
+    margin: 0rem 3rem 0rem 0rem;
+}
+
+.order-total-price {
+    margin: 0rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* re-order-product-container */
+.re-order-product-container {
+    display: none;
+    max-height: 100%;
+}
+
+.show {
+    display: block;
+}
+
+/* re-order-product-nested-product */
+.re-order-product-nested-product {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0.8rem;
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.nested-product-first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nested-product-second-child {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.re-order-product-nested-product img {
+    height: 3.2rem;
+    width: 3.2rem;
+    border-radius: 50%;
+}
+
+
+.re-order-product-nested-product-texts {
+    width: 7.1rem;
+}
+
+.re-order-product-nested-product-texts h4 {
+    font-size: 0.8rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.re-order-product-nested-product-texts p {
+    font-size: 0.6rem;
+}
+
+.re-order-product-nested-product-price {
+    margin-left: 1rem;
+}
+
+.re-order-product-nested-product-price h4 {
+    font-size: 0.8rem;
+    font-weight: 550;
+    margin: 0;
+}
+
+.re-order-product-nested-product-add-btn {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.07rem 0.6rem;
+    color: #EEEEEE;
+    background-color: #A21A24;
+    border: none;
+    border-radius: 0.3rem;
+}
+
+/* re-order-product-btns */
+.re-order-product-btns {
+    display: flex;
+    gap: 0.8rem;
+    padding-bottom: 1rem;
+}
+
+.re-order-product-btns button {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.4rem;
+    border: none;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.re-order-product-btns .reorder-btn {
+    background-color: #A21A24;
+}
+
+.re-order-product-btns .receipt-btn {
+    background-color: #050505;
+}

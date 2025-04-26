@@ -23,11 +23,11 @@ body {
 
 /* pages-heading */
 .pages-heading {
-    height: 5rem;
     position: relative;
     display: flex;
-    align-items: center;
     justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .back-arrow-icon {

@@ -199,7 +199,7 @@
             <!-- home-selected-product -->
             <div class="home-selected-product modal-dialog">
                 <!-- close-n-black-bg -->
-                <div class="close-n-black-bg btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <div class="close-n-black-bg" data-bs-dismiss="modal" aria-label="Close">
                     <!-- close-icon -->
                     <i class="fa-solid fa-circle-xmark close-icon"></i>
                 </div>
@@ -245,7 +245,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Update your menu-item div to include data attributes -->
         <div class="menu-items">
             {% for category, items in menu_by_category.items %}
@@ -281,7 +281,7 @@
                     <i class="fa-solid fa-house home-icon"></i>
                     <span>Home</span>
                 </a>
-                <a href="{% url 'view_transactions' %}" class="nav-item">
+                <a href="/history/" class="nav-item">
                     <i class="fa-solid fa-repeat"></i>
                     <span>Reorder</span>
                 </a>

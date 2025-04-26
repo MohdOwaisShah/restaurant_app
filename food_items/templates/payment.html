@@ -145,24 +145,24 @@
     <!-- Bottom Nav Bar -->
     <nav class="bottom-navbar">
         <div class="bottom-nav-items">
-            <a href="/" class="nav-item active">
-                <i class="bi bi-house"></i>
+            <a href="/" class="nav-item">
+                <i class="fa-solid fa-house home-icon"></i>
                 <span>Home</span>
             </a>
-            <a href="#" class="nav-item">
-                <i class="bi bi-arrow-repeat"></i>
+            <a href="/history/" class="nav-item">
+                <i class="fa-solid fa-repeat"></i>
                 <span>Reorder</span>
             </a>
             <a href="{% url 'view_cart' %}" class="nav-item">
-                <i class="bi bi-cart" style="position: relative;">
+                <i class="fa-solid fa-cart-shopping" style="position: relative;">
                     {% if cart_count > 0 %}
                     <span class="bottom-nav-cart-count">{{ cart_count }}</span>
                     {% endif %}
                 </i>
                 <span>Cart</span>
             </a>
-            <a href="#" class="nav-item">
-                <i class="bi bi-receipt"></i>
+            <a href="{% url 'view_transactions' %}" class="nav-item">
+                <i class="fa-solid fa-money-bill"></i>
                 <span>Transaction</span>
             </a>
         </div>

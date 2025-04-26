@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font-awesome-cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- style -->
+    <link rel="stylesheet" href="{% static 'styles/common.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/reOrder.css' %}">
+</head>
+
+<body>
+    <div class="pages-heading">
+        <!-- Back arrow link -->
+        <a href="/" class="back-arrow-icon">
+            <img src="../static/icons/chevron-back-outline.svg" alt="back-button">
+        </a>
+        <!-- Heading text -->
+        <h1>
+            <span class="maroon-color" id="maroonText">Re </span><span id="normalText">Order</span>
+        </h1>
+    </div>
+
+    <!-- Main container for all re-order products -->
+    <div class="re-order-product-main-container">
+
+        <!-- First product item -->
+        <div class="re-order-product">
+            <!-- Clickable bar that toggles the product details -->
+            <div class="re-order-product-bar" onclick="toggleProduct(this)">
+                <h4 class="number-of-products">#4</h4>
+                <p class="order-date">5-15-2023</p>
+                <h4 class="order-total-price"><span class="maroon-color">₹</span>1200</h4>
+                <!-- Arrow icon that will change direction when clicked -->
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
+            <!-- Container for product details (hidden by default) -->
+            <div class="re-order-product-container">
+                <!-- Individual product item -->
+                <div class="re-order-product-nested-product">
+                    <!-- nested-product-first-child -->
+                    <div class="nested-product-first-child">
+                        <img src="../static/images/fastfood.jpg" alt="Margherita Pizza">
+                        <div class="re-order-product-nested-product-texts">
+                            <h4>Margherita Pizza</h4>
+                        </div>
+                    </div>
+                    <!-- nested-product-second-child -->
+                    <div class="nested-product-second-child">
+                        <div class="re-order-product-nested-product-price">
+                            <h4><span class="maroon-color">₹</span>400</h4>
+                        </div>
+                        <button class="re-order-product-nested-product-add-btn">+</button>
+                    </div>
+                </div>
+
+                <!-- Another product item -->
+                <div class="re-order-product-nested-product">
+                    <div class="nested-product-first-child">
+                        <img src="../static/images/fastfood.jpg" alt="Margherita Pizza">
+                        <div class="re-order-product-nested-product-texts">
+                            <h4>Margherita Pizza</h4>
+                        </div>
+                    </div>
+                    <div class="nested-product-second-child">
+                        <div class="re-order-product-nested-product-price">
+                            <h4><span class="maroon-color">₹</span>400</h4>
+                        </div>
+                        <button class="re-order-product-nested-product-add-btn">+</button>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="re-order-product-btns">
+                    <button class="reorder-btn">Reorder</button>
+                    <button class="receipt-btn">Receipt</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second product item (same structure as first) -->
+        <div class="re-order-product">
+            <div class="re-order-product-bar" onclick="toggleProduct(this)">
+                <h4 class="number-of-products">#4</h4>
+                <p class="order-date">5-15-2023</p>
+                <h4 class="order-total-price"><span class="maroon-color">₹</span>1200</h4>
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
+            <div class="re-order-product-container">
+                <div class="re-order-product-nested-product">
+                    <div class="nested-product-first-child">
+                        <img src="../static/images/fastfood.jpg" alt="Margherita Pizza">
+                        <div class="re-order-product-nested-product-texts">
+                            <h4>Margherita Pizza</h4>
+                        </div>
+                    </div>
+                    <div class="nested-product-second-child">
+                        <div class="re-order-product-nested-product-price">
+                            <h4><span class="maroon-color">₹</span>400</h4>
+                        </div>
+                        <button class="re-order-product-nested-product-add-btn">+</button>
+                    </div>
+                </div>
+                <div class="re-order-product-nested-product">
+                    <div class="nested-product-first-child">
+                        <img src="../static/images/fastfood.jpg" alt="Margherita Pizza">
+                        <div class="re-order-product-nested-product-texts">
+                            <h4>Margherita Pizza</h4>
+                        </div>
+                    </div>
+                    <div class="nested-product-second-child">
+                        <div class="re-order-product-nested-product-price">
+                            <h4><span class="maroon-color">₹</span>400</h4>
+                        </div>
+                        <button class="re-order-product-nested-product-add-btn">+</button>
+                    </div>
+                </div>
+                <div class="re-order-product-btns">
+                    <button class="reorder-btn">Reorder</button>
+                    <button class="receipt-btn">Receipt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Nav Bar -->
+    <nav class="bottom-navbar">
+        <div class="bottom-nav-items">
+            <a href="/" class="nav-item">
+                <i class="fa-solid fa-house home-icon"></i>
+                <span>Home</span>
+            </a>
+            <a href="/history/" class="nav-item">
+                <i class="fa-solid fa-repeat"></i>
+                <span>Reorder</span>
+            </a>
+            <a href="{% url 'view_cart' %}" class="nav-item">
+                <i class="fa-solid fa-cart-shopping" style="position: relative;">
+                    {% if cart_count > 0 %}
+                    <span class="bottom-nav-cart-count">{{ cart_count }}</span>
+                    {% endif %}
+                </i>
+                <span>Cart</span>
+            </a>
+            <a href="{% url 'view_transactions' %}" class="nav-item">
+                <i class="fa-solid fa-money-bill"></i>
+                <span>Transaction</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        /**
+         * Toggles the display of product details when clicked
+         * @param {HTMLElement} clickedElement - The product bar that was clicked
+         */
+        function toggleProduct(clickedElement) {
+            // Find the product container (next sibling element)
+            const container = clickedElement.nextElementSibling;
+            // Find the arrow icon within the clicked element
+            const arrow = clickedElement.querySelector('i');
+
+            // Toggle the 'show' class to display/hide the container
+            container.classList.toggle('show');
+
+            // Toggle between up and down arrow icons
+            if (container.classList.contains('show')) {
+                arrow.classList.remove('fa-angle-down');
+                arrow.classList.add('fa-angle-up');
+            } else {
+                arrow.classList.remove('fa-angle-up');
+                arrow.classList.add('fa-angle-down');
+            }
+        }
+    </script>
+</body>
+
+</html>

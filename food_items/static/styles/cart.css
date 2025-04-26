@@ -170,6 +170,15 @@ body {
     gap: 1rem;
 }
 
+.alert-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    font-weight: 600;
+    gap: 0.3rem;
+}
+
 .table-number,
 .subtotal,
 .discount,
