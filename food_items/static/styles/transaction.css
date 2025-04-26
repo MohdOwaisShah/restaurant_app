@@ -1,72 +1,137 @@
-body {
-    background-color: #f8f9fa;
-}
-.transaction-card {
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-}
-.transaction-card:hover {
-    transform: translateY(-5px);
-}
-.badge-amount {
-    font-size: 1rem;
-    padding: 0.5em 1em;
-    border-radius: 20px;
-}
-.reorder-btn {
-    background-color: #007bff;
-    color: white;
-    border-radius: 20px;
-}
-.reorder-btn:hover {
-    background-color: #0056b3;
-}
-
-.bottom-navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 1000;
-    padding: 10px 0;
-}
-
-.bottom-nav-items {
+/* transactions-container */
+.transactions-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    max-width: 600px;
-    margin: 0 auto;
+    gap: 1rem;
+    padding-bottom: 6rem;
 }
 
-.nav-item {
+.successful-transaction{
+    color: rgb(24, 108, 59);
+}
+.process-transaction{
+    color: rgb(190, 114, 0);
+}
+.cancel-transaction{
+    color: rgb(255, 0, 0);
+}
+
+.transaction {
+    max-height: 5rem;
+    width: 20rem;
+    border-radius: 1rem;
+    background-color: #EDEDED;
+    gap: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    color: #666;
-    font-size: 12px;
+    transition: all 0.4s ease;
 }
 
-.nav-item.active {
-    color: #007bff;
+/* transaction-bar */
+.transaction-bar {
+    min-height: 5rem;
+    width: 100%;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EDEDED;
+    gap: 1rem;
+    cursor: pointer;
 }
 
-.nav-item i {
-    font-size: 20px;
-    margin-bottom: 4px;
+/* process icon */
+.transaction-bar .process-icon {
+    font-size: 2rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 0.6rem;
 }
 
-.bottom-nav-cart-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ff4444;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
+/* process-n-date-container */
+.process-n-date-container h3 {
+    font-size: 1.1rem;
+}
+
+.process-n-date-container p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.transaction-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #515151;
+    padding-left: 3.5rem;
+}
+
+
+/* transaction-hidden-body */
+.transaction-hidden-body {
+    display: none;
+    max-height: 0;
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: max-height 0.3s ease, visibility 0.3s ease;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.transaction-hidden-body.active {
+    display: block;
+}
+
+.transaction-hidden-body h3 {
+    font-size: 1.1rem;
+    color: #515151;
+}
+
+/* transaction-id */
+.transaction-hidden-body .transaction-id {
+    font-size: 1rem;
+    color: #515151;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+}
+
+/* download-receipt */
+.download-receipt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* download-icon */
+.fa-cloud-arrow-down {
+    font-size: 1.5rem;
+    color: #515151;
+}
+
+.download-receipt p {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+/* transaction-show-body  */
+.transaction-show-body {
+    max-height: 7rem;
+    width: 17rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow: hidden;
+    visibility: visible;
+    padding-bottom: 1rem;
+}
+
+.show {
+    max-height: 14rem;
+    transition: all 0.3s ease;
 }

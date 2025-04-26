@@ -129,6 +129,7 @@
     display: flex;
     gap: 0.8rem;
     padding-bottom: 1rem;
+    padding-top: 0.5rem;
 }
 
 .re-order-product-btns button {
